@@ -5,8 +5,10 @@ import com.example.test2.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class DepartmentServices {
@@ -31,6 +33,15 @@ public class DepartmentServices {
     public String deleteDepartment(Long deptid){
         departmentRepository.deleteById(deptid);
         return "Deleted Successfully";
+    }
+    public List<String> getNamesById(Long deptid){
+        List<Department> list = departmentRepository.findAll();
+        List<String> ans = new ArrayList<>();
+        for(Department i: list){
+            if(i.getDeptid()==deptid)
+                ans.add(i.getEmp_name());
+        }
+        return ans;
     }
 
 }
