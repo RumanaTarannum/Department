@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class DepartmentServices {
@@ -36,22 +35,8 @@ public class DepartmentServices {
         departmentRepository.deleteById(deptid);
         return "Deleted Successfully";
     }
-    public List<String> getNames(String dept_name){
-        List<Department> list = departmentRepository.findAll();
-        List<String> ans = new ArrayList<>();
-            for(Department i: list){
-                if(i.getDept_name()!=null && i.getDept_name().contains(dept_name)) {
-//                    String[] words = i.getDept_name().split(" ");
-//                    for (String j : words) {
-//                        if(j.equals(dept_name)){
-//                            ans.add(i.getEmp_name());
-//                            break;
-//                        }
-//                    }
-                    ans.add(i.getEmp_name());
-                }
-            }
-        return ans;
+    public List<Department> getNames(String dept_name){
+        return departmentRepository.findByName(dept_name);
     }
 
 }

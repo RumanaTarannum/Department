@@ -1,13 +1,11 @@
 package com.example.test2.controller;
 
 import com.example.test2.pojo.Department;
-import com.example.test2.repository.DepartmentRepository;
 import com.example.test2.service.DepartmentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/Department")
@@ -37,7 +35,7 @@ public class DepartmentController {
     }
     @GetMapping("/{dept_name}")
     @ResponseBody
-    public List<String> getNames(@RequestBody Department department,@PathVariable String dept_name){
+    public List<Department> getNames(@PathVariable String dept_name){
         return departmentServices.getNames(dept_name);
     }
 
