@@ -40,14 +40,15 @@ public class DepartmentServices {
         List<Department> list = departmentRepository.findAll();
         List<String> ans = new ArrayList<>();
             for(Department i: list){
-                if(i.getDept_name()!=null) {
-                    String[] words = i.getDept_name().split(" ");
-                    for (String j : words) {
-                        if(j.equals(dept_name)){
-                            ans.add(i.getEmp_name());
-                            break;
-                        }
-                    }
+                if(i.getDept_name()!=null && i.getDept_name().contains(dept_name)) {
+//                    String[] words = i.getDept_name().split(" ");
+//                    for (String j : words) {
+//                        if(j.equals(dept_name)){
+//                            ans.add(i.getEmp_name());
+//                            break;
+//                        }
+//                    }
+                    ans.add(i.getEmp_name());
                 }
             }
         return ans;
