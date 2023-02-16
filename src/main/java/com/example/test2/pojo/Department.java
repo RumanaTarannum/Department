@@ -9,16 +9,27 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String emp_name;
+    @Column(name="dept_name")
+    private String dept_name;
     private long deptid;
     private long salary;
     public Department(){
 
     }
-    public Department(String emp_name,long deptid,long salary){
+    public Department(String emp_name,long deptid,long salary,String dept_name){
         super();
         this.deptid=deptid;
         this.emp_name=emp_name;
         this.salary=salary;
+        this.dept_name=dept_name;
+    }
+
+    public String getDept_name() {
+        return dept_name;
+    }
+
+    public void setDept_name(String dept_name) {
+        this.dept_name = dept_name;
     }
 
     public long getId() {

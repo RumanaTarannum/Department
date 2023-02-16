@@ -35,10 +35,10 @@ public class DepartmentController {
     public Department updateDepartment(@RequestBody Department department,@PathVariable("id") Long deptid){
         return departmentServices.updateDepartment(department,deptid);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{dept_name}")
     @ResponseBody
-    public List<String> getNamesById(@RequestBody Department department,@PathVariable("id") Long deptid){
-        return departmentServices.getNamesById(deptid);
+    public List<String> getNames(@RequestBody Department department,@PathVariable String dept_name){
+        return departmentServices.getNames(dept_name);
     }
 
 }

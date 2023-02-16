@@ -28,19 +28,28 @@ public class DepartmentServices {
             db.setSalary(department.getSalary());
         if(Objects.nonNull(department.getEmp_name()))
             db.setEmp_name(department.getEmp_name());
+        if(Objects.nonNull(department.getDept_name()))
+            db.setDept_name(department.getDept_name());
         return departmentRepository.save(db);
     }
     public String deleteDepartment(Long deptid){
         departmentRepository.deleteById(deptid);
         return "Deleted Successfully";
     }
-    public List<String> getNamesById(Long deptid){
+    public List<String> getNames(String dept_name){
         List<Department> list = departmentRepository.findAll();
         List<String> ans = new ArrayList<>();
-        for(Department i: list){
-            if(i.getDeptid()==deptid)
-                ans.add(i.getEmp_name());
-        }
+            for(Department i: list){
+                if(i.getDept_name()!=null) {
+                    String[] words = i.getDept_name().split(" ");
+                    for (String j : words) {
+                        if(j.equals(dept_name)){
+                            ans.add(i.getEmp_name());
+                            break;
+                        }
+                    }
+                }
+            }
         return ans;
     }
 
